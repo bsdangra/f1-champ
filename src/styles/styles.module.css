@@ -56,6 +56,24 @@
     background-color: #1976d2 !important;
 }
 
+.spinner {
+    position: absolute;
+    top: calc(50% - 2rem);
+    left: calc(50% - 2rem);
+}
+
+.backdrop {
+    z-index: 9999;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+}
+
 .winnerHighLight {
     border: 2px solid red !important;
 }

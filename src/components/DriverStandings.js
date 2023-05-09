@@ -6,7 +6,7 @@ import Typography from "@mui/material/Typography";
 
 export function DriverStandings({ driver, getWinnerInfo }) {
   return (
-    <div onClick={() => getWinnerInfo(driver)}>
+    <div onClick={() => getWinnerInfo(driver)} style={{cursor: 'pointer'}}>
       <Card variant="outlined" className={styles.section}>
         <CardContent>
           <Typography variant="h5" color="#fff">

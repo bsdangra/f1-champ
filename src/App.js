@@ -7,6 +7,7 @@ import { driverStandings, winnerInfo } from "./service/api";
 import { NavBar } from "./components/NavBar";
 import { DriverStandings } from "./components/DriverStandings";
 import { SeasonsWinner } from "./components/SeasonsWinner";
+import { GlobalLoader } from "./components/GlobalLoader";
 
 function App() {
   const [driverList, setDriverList] = useState([]);
@@ -14,9 +15,11 @@ function App() {
   const [showDriverSec, setShowDriverSec] = useState(true);
   const [selectedDriverId, setSelectedDriverId] = useState("");
   const [selectedYear, setSelectedYear] = useState("");
+  const [loading, setLoading] = useState(false);
   const yearFilter = 2005;
 
   useEffect(() => {
+    setLoading(true);
     const res = driverStandings();
     res.then((result) => {
       let list = result?.MRData?.StandingsTable?.StandingsLists;
@@ -35,10 +38,12 @@ function App() {
         });
         setDriverList(arr);
       }
+      setLoading(false);
     });
   }, []);
 
   const getWinnerInfo = (driverInfo) => {
+    setLoading(true);
     const res = winnerInfo(driverInfo.season);
     res.then((result) => {
       let list = result?.MRData?.RaceTable?.Races;
@@ -58,6 +63,7 @@ function App() {
         setSelectedDriverId(driverInfo.driverId);
         setSelectedYear(driverInfo.season);
       }
+      setLoading(false);
     });
   };
 
@@ -65,20 +71,33 @@ function App() {
     <>
       <NavBar />
       <div className={styles.container}>
-        <Typography variant="h3" color="text.primary" className={styles.heading}>
-          { showDriverSec ? 'F1 Champions' : `${selectedYear} Seasons Champions`}
+        {loading && (
+          <div>
+            <GlobalLoader open={loading} />{" "}
+          </div>
+        )}
+        <Typography
+          variant="h3"
+          color="text.primary"
+          className={styles.heading}
+        >
+          {showDriverSec ? "F1 Champions" : `${selectedYear} Seasons Champions`}
         </Typography>
         {showDriverSec &&
           driverList.map((driver) => {
             return (
-              <DriverStandings driver={driver} getWinnerInfo={getWinnerInfo} />
+              <DriverStandings
+                driver={driver}
+                getWinnerInfo={getWinnerInfo}
+                key={driver.season}
+              />
             );
           })}
         {!showDriverSec && (
           <div className={styles.backBtn}>
-            <Button variant="contained" onClick={() => setShowDriverSec(true)} >
-            Back{" "}
-          </Button>
+            <Button variant="contained" onClick={() => setShowDriverSec(true)}>
+              Back{" "}
+            </Button>
           </div>
         )}
         {!showDriverSec &&
@@ -88,6 +107,7 @@ function App() {
                 driver={driver}
                 selectedDriverId={selectedDriverId}
                 selectedYear={selectedYear}
+                key={index}
               />
             );
           })}
