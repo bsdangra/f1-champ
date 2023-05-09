@@ -4,7 +4,7 @@ import styles from "../styles/styles.module.css";
 export function Logo() {
   return (
     <div className={styles.appLogo}>
-      <img src={f1Logo} alt="Trucendent Logo" />
+      <img src={f1Logo} alt="F1 Logo" />
     </div>
   );
 }
