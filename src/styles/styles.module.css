@@ -1,0 +1,61 @@
+.toolbarContainer {
+    height: 12vh;
+}
+
+.appLogo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 1em;
+}
+
+.appLogo img {
+    height: 8vh;
+    width: 8vh;
+    margin-left: 1em;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 2em;
+}
+
+.heading {
+    width: 100%;
+    text-align: center;
+}
+
+.backBtn {
+    width: 100%;
+    text-align: left;
+    margin-left: 1em;
+}
+
+.section {
+    max-width: 30vw;
+    min-width: 30vw;
+    height: 10vh;
+    background-size: cover;
+    text-align: center;
+    padding-top: 1em;
+    margin: 1em;
+    background-color: #4E4B5C !important;
+}
+
+.sectionWinner {
+    max-width: 30vw;
+    min-width: 30vw;
+    height: 10vh;
+    background-size: cover;
+    text-align: center;
+    padding-top: 1em;
+    margin: 1em;
+    background-color: #1976d2 !important;
+}
+
+.winnerHighLight {
+    border: 2px solid red !important;
+}
