@@ -56,6 +56,7 @@ function App() {
             driverId: element?.Results[0].Driver.driverId,
             constructorName: element?.Results[0].Constructor.name,
             raceName: element?.raceName,
+            circuitId: element?.Circuit.circuitId,
           });
         });
         setSeasonsWinnerList(arr);
@@ -101,13 +102,13 @@ function App() {
           </div>
         )}
         {!showDriverSec &&
-          seasonsWinnerList.map((driver, index) => {
+          seasonsWinnerList.map((driver) => {
             return (
               <SeasonsWinner
                 driver={driver}
                 selectedDriverId={selectedDriverId}
                 selectedYear={selectedYear}
-                key={index}
+                key={driver?.circuitId}
               />
             );
           })}
